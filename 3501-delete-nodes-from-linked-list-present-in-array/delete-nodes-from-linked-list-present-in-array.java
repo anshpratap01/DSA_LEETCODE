@@ -10,45 +10,23 @@
  */
 class Solution {
     public ListNode modifiedList(int[] nums, ListNode head) {
-        // size
-        int count = 0;
-        ListNode size = head;
-        while(size != null){
-            count++;
-            size = size.next;
+        ListNode f = new ListNode(0);
+        ListNode tail = f;
+
+        Set<Integer> st = new HashSet<>();
+        for(int a : nums){
+            st.add(a);
         }
 
-        ListNode temp = head;
-        int arr[] = new int[count];
-        int idx = 0;
+        while(head != null){
+            if(!st.contains(head.val)){
+                tail.next = new ListNode(head.val);
+                tail = tail.next;
 
-        while(temp != null){
-            arr[idx] = temp.val;
-            idx++;
-            temp = temp.next;
-
+            }
+            head = head.next;
         }
-        List<Integer> ans = new ArrayList<>();
-        Set<Integer> remove = new HashSet<>();
-        for(int n : nums){
-            remove.add(n);
-        }
-        for(int a : arr){
-        if(!remove.contains(a)){
-            ans.add(a);
-        }
-       }
-       ListNode an = new ListNode(ans.get(0));
-        ListNode curr = an;
-
-        for (int i = 1; i < ans.size(); i++) {
-            ListNode tempp = new ListNode(ans.get(i));
-            curr.next = tempp;
-            curr = curr.next; 
-        }
-
-        return an;
-
+        return f.next;
         
     }
 }
