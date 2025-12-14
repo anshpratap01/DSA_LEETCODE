@@ -4,7 +4,7 @@ class Solution {
         int small = 0;
         int large  = 0;
         int n = nums.length;
-        if(nums.length == 1) return 0;
+        // if(nums.length == 1) return 0;
 
         for(int i= 0; i<k; i++){
             small = small+nums[i];
