@@ -24,7 +24,8 @@ class Solution {
             else if (j - i + 1 == k) {
 
                 
-                arr[idx++] = nums[dq.peekFirst()];
+                arr[idx] = nums[dq.peekFirst()];
+                idx++;
 
                 
                 if (dq.peekFirst() == i) {
