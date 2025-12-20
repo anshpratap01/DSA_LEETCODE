@@ -15,8 +15,8 @@ class Solution {
                 i++;
             }
 
-            cnt += (j-i+1);
-            j++;
+            if(pro<k){cnt += (j-i+1);
+            j++;}
            
 
         }
