@@ -8,29 +8,16 @@
  * }
  */
 class Solution {
-    public boolean contains(TreeNode root, TreeNode node) {
-        if (root == null)
-            return false;
-        if (root == node)
-            return true;
-        return contains(root.left, node) || contains(root.right, node);
-    }
-
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null) return null;
+        if(p == root || q == root) return root;
+        //if(p == q) return p;
+        TreeNode l = lowestCommonAncestor(root.left ,p,q);
+        TreeNode r = lowestCommonAncestor(root.right ,p,q);
+        if(l != null && r != null) return root;
+        return (l == null) ? r : l;
 
-        if (p == root || q == root)
-            return root;
-        if (p == q)
-            return p;
-        boolean left = contains(root.left, p);
-        boolean right = contains(root.right, q);
-        if (left == true && right == true || left != true && right != true)
-            return root;
-        if (left == true && right != true)
-            return lowestCommonAncestor(root.left, p, q);
-        if (left != true && right == true)
-           return  lowestCommonAncestor(root.right, p, q);
-        return null;
 
+        
     }
 }
