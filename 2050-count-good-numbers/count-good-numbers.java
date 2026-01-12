@@ -1,26 +1,17 @@
 class Solution {
-    static final int M = (int)1e9 + 7;
-
-    private long findPower(long a, long b) {
-        if (b == 0) {
-            return 1;
-        }
-
-        long half = findPower(a, b / 2);
-        long result = (half * half) % M;
-
-        if (b % 2 == 1) {
-            result = (result * a) % M;
-        }
-
-        return result;
+    long mod = 1000000007;
+    long pow(long a,long b){
+        if(b==0) return 1;
+        if(b==1) return a;
+        long p = pow(a,b/2);
+        if((b&1)==0) return (p*p)%mod;
+        else return (a*(p*p))%mod;
     }
     public int countGoodNumbers(long n) {
-        long oddPositions = (n + 1) / 2;
-        long evenPositions = n / 2;
-
-        long result = (findPower(5, oddPositions) * findPower(4, evenPositions)) % M;
-        return (int) result;
-        
+        long k1 = pow(5,n/2)%mod;
+        long k2 = pow(4,n/2)%mod;
+        long ans = (k1*k2)%mod;
+        if((n&1)==0) return (int)(ans);
+        else return (int)((ans*5)%mod);
     }
 }
