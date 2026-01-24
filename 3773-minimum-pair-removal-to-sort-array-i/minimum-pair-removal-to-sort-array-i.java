@@ -1,46 +1,49 @@
 class Solution {
-    public boolean issorted(List<Integer> list){
-        for(int i = 0; i<list.size()-1; i++){
-            if(list.get(i) > list.get(i+1)){
+    public boolean issorted(List<Integer> ans ){
+        for(int i = 0; i<ans.size()-1; i++){
+            if(ans.get(i) > ans.get(i+1)){
                 return false;
             }
         }
         return true;
     }
-    public int minindx(List<Integer> list){
-        int index = -1;
+    public int minsum(List<Integer> ans ){
         int minsum = Integer.MAX_VALUE;
-        for(int i = 0; i<list.size()-1; i++){
-            int sum = list.get(i) + list.get(i+1);
-            if(sum<minsum){
-                index = i;
+        int idx = 0;
+        for(int i = 0; i<ans.size()-1; i++){
+            int sum = ans.get(i) + ans.get(i+1);
+            if(sum < minsum){
                 minsum = sum;
+                idx = i;
             }
         }
-        return index;
-
+        return idx;
     }
     public int minimumPairRemoval(int[] nums) {
-        int n = nums.length;
-        int cnt = 0;
-        
-        ArrayList<Integer> list = new ArrayList<>();
-        for (int nn : nums) {
-            list.add(nn);
+
+        ArrayList<Integer> ans = new ArrayList<>();
+
+       int cnt = 0;
+        for(int ele : nums){
+            ans.add(ele);
+
         }
 
-      
-            while (!issorted(list)){
-                int idx = minindx(list);
-                int summ = list.get(idx) + list.get(idx+1);
-                list.set(idx,summ);
-                list.remove(idx+1);
-                cnt++;
+        while(!issorted(ans)){
+            int index = minsum(ans);
+            int sum = ans.get(index) + ans.get(index+1);
+            ans.set(index,sum);
+            ans.remove(index+1);
+            cnt++;
+           for(int i = 0; i<ans.size(); i++){
+              System.out.print(ans.get(i)+" ");
+           }
+           System.out.println();
 
-            }
-        
+
+        }
         return cnt;
-
+        
         
     }
 }
