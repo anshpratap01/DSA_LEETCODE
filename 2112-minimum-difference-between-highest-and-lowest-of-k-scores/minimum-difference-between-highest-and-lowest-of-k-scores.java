@@ -11,15 +11,15 @@ class Solution {
             if(j-i+1 < k){
                 j++;
             }
-            System.out.println("Index " + j);
+            //System.out.println("Index " + j);
 
               if( j-i+1 == k){
                 int a = nums[i];
                 int b = nums[j];
                 int  diff = b-a;
                 min = Math.min(diff,min);
-                System.out.println("minIndex " + j);
-                System.out.println ("min-->" +min+ " ");
+                //System.out.println("minIndex " + j);
+                //System.out.println ("min-->" +min+ " ");
                 j++;
                 i++;
                 
