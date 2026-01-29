@@ -1,39 +1,35 @@
 class Solution {
-    public List<Integer> helper(String s){
-        List<Integer> result = new ArrayList<>();
-
+    public List<Integer> solve(String s){
+         List<Integer> res = new ArrayList<>();
         for(int i = 0; i<s.length(); i++){
-          char c = s.charAt(i);
-          if( c== '+' || c == '-' || c == '*'){
+            char ch = s.charAt(i);
+            if(ch == '+' ||  ch == '-' || ch == '*'){
+                List<Integer> left = solve(s.substring(0,i));
+                List<Integer> right = solve(s.substring(i+1));
 
-            List<Integer> left = helper(s.substring(0,i));
-            List<Integer> right  = helper(s.substring(i+1));
-            
-            for (int x : left) {
-                    for (int y : right) {
-                        if (c == '+') {
-                            result.add(x + y);
-                        } else if (c == '-') {
-                            result.add(x - y);
-                        } else {
-                            result.add(x * y);
+                for(int x:left){
+                    for(int y:right){
+                        if(ch == '+'){
+                            res.add(x+y);
+                        }
+                        else if(ch == '-'){
+                            res.add(x-y);
+                        }
+                        else {
+                            res.add(x*y);
                         }
                     }
+                
                 }
-            
+                
             }
-
+            
         }
-         if (result.isEmpty()) {
-            result.add(Integer.parseInt(s));
-        }
-
-        return result;
-
+        if(res.size() == 0) res.add(Integer.valueOf(s));
+        return res;
     }
-
     public List<Integer> diffWaysToCompute(String s) {
-        return helper(s);
+        return solve(s);
         
     }
 }
