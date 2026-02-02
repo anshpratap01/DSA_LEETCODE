@@ -1,28 +1,29 @@
 class Solution {
-    public boolean check(int idx,int currsum,String s, int num){
-        if(idx == s.length()){
-            return currsum == num;
+    public boolean check(String s, int num,int sum){
+        if( s.isEmpty() && num == sum){
+            return true;
         }
-        if(currsum>num){
+        if(sum>num){
             return false;
         }
-        boolean flag = false;
-        for(int j = idx; j<s.length(); j++){
-            String sub = s.substring(idx,j+1);
-            int val = Integer.valueOf(sub);
-            flag = flag || check(j+1,currsum+val,s,num);
-            if(flag == true){
+        for(int i = 0; i<s.length(); i++){
+            String left = s.substring(0,i+1);
+            String right = s.substring(i+1);
+           int  newsum = sum + Integer.valueOf(left) ;
+            if(check(right,num,newsum)){
                 return true;
             }
         }
         return false;
+
+        
     }
     public int punishmentNumber(int n) {
         int res = 0;
         for(int num = 1; num<=n; num++){
             int square = num*num;
             String s = String.valueOf(square);
-            if(check(0,0,s,num)== true){
+            if(check(s,num,0)== true){
                 res = res+square;
             }
         }
