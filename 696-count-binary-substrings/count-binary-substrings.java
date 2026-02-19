@@ -13,7 +13,7 @@ class Solution {
         }
     }
 
-    ans.add(count); // add last group
+    ans.add(count);  // for last 
 
     
     int sum = 0;
