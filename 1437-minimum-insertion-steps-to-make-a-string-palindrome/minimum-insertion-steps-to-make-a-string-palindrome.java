@@ -30,7 +30,9 @@ class Solution {
              dp[i][j]  = -1;
          }
      }
+     // same as finding the lps(longest palandromic subsequences)
      int len =  lcs(s,rev,n,m);
+     //  main part for insertaion ans well as deletion 
      return n-len;
         
     }
