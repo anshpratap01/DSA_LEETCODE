@@ -1,38 +1,42 @@
 class Solution {
     public void nextPermutation(int[] nums) {
-
-        // Step 1: Find the breaking point
-        int i = nums.length - 2;
-
-        while (i >= 0 && nums[i] >= nums[i + 1]) {
-            i--;
+        int n = nums.length;
+        int index = -1;
+        for(int i = n-2; i>=0; i--){
+            if(nums[i] < nums[i+1]){
+                index = i;
+                break;
+                
+            }
         }
 
-        // Step 2: Find a number bigger than nums[i]
-        if (i >= 0) {
-            int j = nums.length - 1;
-
-            while (nums[j] <= nums[i]) {
-                j--;
+        if(index == -1){
+            reverse(nums , 0 , n-1);
+        }else{
+            for(int i = n-1 ; i>index; i--){
+                if(nums[i] > nums[index]){
+                    swap(nums , i , index);
+                    reverse(nums, index+1 ,  n-1);
+                    break;
+                }
             }
+        }
+        
+        
+    }
+    public static void reverse(int nums[],int start, int end){
+        while (start < end) {
+            swap(nums,start,end);
+            start++;
+            end--;
+        }
 
-            // Swap
+    }  
+    public static void swap(int nums[],int i, int j){
+       
             int temp = nums[i];
             nums[i] = nums[j];
             nums[j] = temp;
+
         }
-
-        // Step 3: Reverse everything after i
-        int left = i + 1;
-        int right = nums.length - 1;
-
-        while (left < right) {
-            int temp = nums[left];
-            nums[left] = nums[right];
-            nums[right] = temp;
-
-            left++;
-            right--;
-        }
-    }
 }
