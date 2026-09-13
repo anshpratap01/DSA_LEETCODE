@@ -13,14 +13,14 @@ class Solution {
         }
 
       int ans = -1;
-      for(int i = 0; i<n; i++){
-        System.out.print(left[i] + " ");
-       // System.out.print(right[i] + " ");
-      }
-      for(int i = 0; i<n; i++){
-        System.out.print(right[i] + " ");
-       // System.out.print(right[i] + " ");
-      }
+    //   for(int i = 0; i<n; i++){
+    //     System.out.print(left[i] + " ");
+    //    // System.out.print(right[i] + " ");
+    //   }
+    //   for(int i = 0; i<n; i++){
+    //     System.out.print(right[i] + " ");
+    //    // System.out.print(right[i] + " ");
+    //   }
         for(int i = 0; i<n; i++){
             if(left[i] == right[i]){
                 ans = i;
