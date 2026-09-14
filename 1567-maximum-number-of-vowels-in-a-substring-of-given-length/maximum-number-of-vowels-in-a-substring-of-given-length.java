@@ -1,40 +1,33 @@
 class Solution {
     public int maxVowels(String s, int k) {
-        StringBuilder sb = new StringBuilder();
-        int i = 0;
-        int j = 0;
+       // StringBuilder sb = new StringBuilder();
 
-        int max = 0;
-        int cnt = 0;   // maintain vowel count
+        int n =  s.length();
+        int left = 0; 
+        int max = Integer.MIN_VALUE;
+        int cnt =0;
 
-        while (j < s.length()) {
+        for(int right = 0; right<n; right++){
+            char ch = s.charAt(right);
+           // sb.append(ch);
 
-            char ch = s.charAt(j);
-            sb.append(ch);
-
-            // add vowel when expanding window
-            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+            if(ch == 'a' || ch == 'e'|| ch == 'i' || ch == 'o' || ch == 'u'){
                 cnt++;
             }
 
-            if (j - i + 1 < k) {
-                j++;
-            } 
-            else if (j - i + 1 == k) {
+            if(right-left +1 == k){
+                max = Math.max(max , cnt);
+                char sh  = s.charAt(left);
 
-                max = Math.max(max, cnt);
-
-                // remove left character
-                char left = sb.charAt(0);
-                if (left == 'a' || left == 'e' || left == 'i' || left == 'o' || left == 'u') {
-                    cnt--;
+                if(sh == 'a' || sh == 'e'|| sh == 'i' || sh == 'o' || sh == 'u'){
+                 cnt--;
                 }
+                //sb.deleteCharAt(left);
+                left++;
 
-                sb.deleteCharAt(0);
-                i++;
-                j++;
             }
-        }
-        return max;
+        
     }
+    return max;
+}
 }
