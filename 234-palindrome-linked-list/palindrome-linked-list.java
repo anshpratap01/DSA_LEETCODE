@@ -24,21 +24,30 @@ class Solution {
         return prev;
     }
     public boolean isPalindrome(ListNode head) {
-        ListNode dummy = new ListNode(0);
-        ListNode temp = dummy;
+        // ListNode dummy = new ListNode(0);
+        // ListNode temp = dummy;
 
-        ListNode curr = head;
+        // ListNode curr = head;
 
-        while (curr != null) {
-            temp.next = new ListNode(curr.val);
-            temp = temp.next;
-            curr = curr.next;
+        // while (curr != null) {
+        //     temp.next = new ListNode(curr.val);
+        //     temp = temp.next;
+        //     curr = curr.next;
+        // }
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
+        ListNode head2 = reverse(slow);
 
-        ListNode head2 = reverse(dummy.next);
 
-       while(head != null){
+       // ListNode head2 = reverse(dummy.next);
+
+       while(head2 != null){
         if(head.val != head2.val){
             return false;
         }
